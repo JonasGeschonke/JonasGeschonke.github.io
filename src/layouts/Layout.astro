@@ -1,10 +1,11 @@
 ---
 import Header from '../components/Header.astro';
 interface Props {
-	title: string;
+	title: string,
+	site: string;
 }
 
-const { title } = Astro.props;
+const { title, site } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,66 +18,8 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<Header></Header>
+	<body class="bg-background">
+		<Header title={site}></Header>
 		<slot />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-
-		--text-dark: #faf4f5;
-		--background-dark: #311919;
-		--primary-dark: #753337;
-		--secondary-dark: #040202;
-		--accent-dark: #d2989b;
-
-		--text-light: #311919;
-		--background-light: #faf4f5;
-		--primary-light: #753337;
-		--secondary-light: #dfbfbf;
-		--accent-light: #924044;
-	}
-
-	.colors-dark-mode {
-		--text: #faf4f5;
-		--background: #311919;
-		--primary: #753337;
-		--secondary: #040202;
-		--accent: #d2989b;
-	}
-
-	.colors-light-mode {
-		--text: #311919;
-		--background: #faf4f5;
-		--primary: #753337;
-		--secondary: #dfbfbf;
-		--accent: #924044;
-	}
-
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
